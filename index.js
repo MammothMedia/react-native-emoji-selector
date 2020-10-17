@@ -273,6 +273,13 @@ export default class EmojiSelector extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.isReady !== nextState.isReady || this.state.category !== nextState.category) {
+      return true
+    }
+    return false
+  }
+
   render() {
     const {
       theme,
@@ -333,7 +340,6 @@ export default class EmojiSelector extends Component {
                   numColumns={columns}
                   keyboardShouldPersistTaps={"always"}
                   ref={scrollview => (this.scrollview = scrollview)}
-                  removeClippedSubviews
                 />
               </View>
             </View>
